@@ -87,3 +87,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
+/*.tar.gz
+/shared
+/rspamd_trainer.sublime-project
+/rspamd_trainer.sublime-workspace
+/config.py

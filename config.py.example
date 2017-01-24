@@ -1,0 +1,23 @@
+import time
+
+FILE_LOGGER_LEVEL = 'DEBUG'  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+CLI_LOGGER_LEVEL = 'DEBUG'  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+RSPAMD_LOG_DIR = '/var/log/rspamd'
+RSPAMD_TRAINING_LOGFILE = 'training.log'
+
+now = time.time()
+min_time = now - 3 * 86400  # 3 days
+max_time = now - 33 * 86400  # 33 days
+start_path = "/data/mail/"
+ham_exclude_parts = frozenset((
+    '.Junk',
+    '.Trash',
+    '.Spam',
+    '.Spamverdacht',
+    '.Papierkorb'
+))
+
+included_domains = (
+    "example1.com",
+    "example2.com",
+)
