@@ -21,8 +21,8 @@ for dom in included_domains:
         if not item.is_file():
             continue
         if not ham_exclude_parts.isdisjoint(PurePath(item).parts):
-            logger.debug("Skip because of excluded parts match: %s" % str(
-                item.absolute()))
+            # logger.debug("Skip because of excluded parts match: %s" % str(
+            #    item.absolute()))
             continue
         counter += 1
         with subprocess.Popen(
