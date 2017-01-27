@@ -4,6 +4,7 @@ from config import ham_exclude_parts, included_domains
 from config import min_time, max_time, start_path
 from logger import rspamd_trainer_logger as logger
 from pathlib import Path, PurePath
+import os
 import subprocess
 import time
 
@@ -21,7 +22,7 @@ for dom in included_domains:
                 "Skip because of excluded parts match: %s" % str(
                     item.absolute()))
             continue
-        for message_file in item.glob("*.*"):
+        for message_file in os.scandir(str(item.absolute())):
             raw_counter += 1
             msg_mtime = message_file.stat().st_mtime
             if not message_file.is_file():
@@ -30,7 +31,7 @@ for dom in included_domains:
                 continue
             counter += 1
             with subprocess.Popen(
-                    ["rspamc", "learn_ham", str(message_file.absolute())],
+                    ["rspamc", "learn_ham", str(message_file.path)],
                     stdout=subprocess.PIPE,
                     stderr=subprocess.STDOUT) as p:
                 try:
